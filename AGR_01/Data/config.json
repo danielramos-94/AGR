@@ -1,0 +1,18 @@
+{
+	"rootPath":"C:\\Users\\UIPATH\\Desktop\\Pruebas\\",
+	"rutaDB":"C:\\United\\AGR_01\\AGR_01\\Data\\robotDB.accdb",
+	"rutaBancosTemporal":"C:\\United\\AGR_01\\AGR_01\\Data\\BancosTemporal\\ficherobancosactual.xls",
+	"credencialERP":"ERPAgro",
+	"numeroSMS":"",
+	"dirmail":"mjgarzon@grupoagroponiente.com;mmontserrat@grupoagroponiente.com;medina@grupogroponiente.com",
+	"dirmailCC":"correoriesgos@grupoagroponiente.com;ajimenez@grupoagroponiente.com",
+	"logF_BusinessProcessName":"Framework",
+	"OrchestratorQueueName":"ProcessABCQueue",
+	"MaxRetryNumber":"",
+	"ExScreenshotsFolderPath":"C:\\United\\AGR_01\\AGR_01\\.screenshots",
+	"LogMessage_GetTransactionData":"Processing Transaction Number: ",
+	"LogMessage_GetTransactionDataError":"Error getting transaction data for Transaction Number:",
+	"LogMessage_Success":"Transaction Successful.",
+	"LogMessage_BusinessRuleException":"Business rule exception.",
+	"LogMessage_ApplicationException":"System exception."
+}
