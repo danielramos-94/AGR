@@ -1,0 +1,3 @@
+Public Function DesFilaTotales()
+    ActiveSheet.ListObjects("Tabla1").ShowTotals = False
+End Function

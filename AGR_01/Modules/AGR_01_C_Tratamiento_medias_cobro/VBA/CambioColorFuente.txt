@@ -1,0 +1,7 @@
+Public Function CambioColorRojo(str_celda as String)
+    Range(str_celda).Font.Color = vbRed
+End Function
+
+Public Function CambioColorVerde(str_celda as String)
+    Range(str_celda).Font.Color = RGB(85,107,47)
+End Function

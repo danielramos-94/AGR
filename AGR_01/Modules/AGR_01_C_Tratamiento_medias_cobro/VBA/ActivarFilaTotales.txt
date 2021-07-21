@@ -1,0 +1,12 @@
+Public Function FilaTotales()
+    ActiveSheet.ListObjects("Tabla1").ShowTotals = True
+    Range("Tabla1[[#Totals],[Imp.fact.]]").Select
+    ActiveSheet.ListObjects("Tabla1").ListColumns("Imp.fact.").TotalsCalculation = _
+        xlTotalsCalculationSum	
+    Range("Tabla1[[#Totals],[Cobrado]]").Select
+    ActiveSheet.ListObjects("Tabla1").ListColumns("Cobrado").TotalsCalculation = _
+        xlTotalsCalculationSum	
+    Range("Tabla1[[#Totals],[Media cobro]]").Select
+    ActiveSheet.ListObjects("Tabla1").ListColumns("Media cobro").TotalsCalculation = _
+        xlTotalsCalculationSum	
+End Function
