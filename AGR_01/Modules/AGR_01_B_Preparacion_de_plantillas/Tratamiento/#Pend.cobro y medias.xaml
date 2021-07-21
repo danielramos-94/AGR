@@ -1,0 +1,266 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Tratamiento" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:beh="clr-namespace:BalaReva.Excel.Hide_UnHide;assembly=BalaReva.Excel" xmlns:bes="clr-namespace:BalaReva.Excel.Sheets;assembly=BalaReva.Excel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_path" Type="InArgument(x:String)" />
+    <x:Property Name="out_result" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="in_week_number" Type="InArgument(x:String)" />
+    <x:Property Name="out_trace" Type="OutArgument(x:Int32)" />
+    <x:Property Name="in_robot_root" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1410.4,1372.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Tratamiento_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="62">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>BalaReva.Excel.Enums</x:String>
+      <x:String>BalaReva.Excel.Sheets</x:String>
+      <x:String>BalaReva.Excel.Base</x:String>
+      <x:String>BalaReva.Excel.Hide_UnHide</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="31">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>BalaReva.Excel</AssemblyReference>
+      <AssemblyReference>BalaReva.Excel.Base</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Tratamiento" sap:VirtualizedContainerService.HintSize="475.2,1308" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="datos_dt" />
+      <Variable x:TypeArguments="x:String" Name="lastCol" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Realizando el proceso de tratamiento de plantilla: &quot;+in_path]" />
+    <ui:ExcelApplicationScope Password="{x:Null}" AutoSave="False" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="433.6,708" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" Visible="False" WorkbookPath="[in_path]">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,598.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Añadiendo columnas nuevas...&quot;]" />
+            <Sequence DisplayName="Añadir nuevas columnas" sap:VirtualizedContainerService.HintSize="333.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="penultimateCol_old" />
+                <Variable x:TypeArguments="x:String" Name="lastCol_old" />
+                <Variable x:TypeArguments="x:String" Name="lastCol_new" />
+                <Variable x:TypeArguments="x:String" Name="newMed" />
+                <Variable x:TypeArguments="sd:DataTable" Name="headers" />
+                <Variable x:TypeArguments="x:String" Name="newPendCobro" />
+                <Variable x:TypeArguments="x:String" Name="penultimateCol_new" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[datos_dt]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="350.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Imp.pend.y medias cobros">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-5]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[penultimateCol_old]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-4]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[lastCol_old]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:ExcelInsertDeleteColumns DisplayName="Insert/Delete Columns" sap:VirtualizedContainerService.HintSize="350.4,188" sap2010:WorkflowViewState.IdRef="ExcelInsertDeleteColumns_2" Mode="Add" NoColumns="2" Position="[datos_dt.Columns.Count-3]" SheetName="Imp.pend.y medias cobros" />
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[datos_dt]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="350.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_4" SheetName="Imp.pend.y medias cobros">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-5]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[penultimateCol_new]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-4]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[lastCol_new]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:ExcelCopyPasteRange DestinationCell="[penultimateCol_new+Convert.ToString(1)]" DestinationSheet="Imp.pend.y medias cobros" DisplayName="Copy/Paste Range" sap:VirtualizedContainerService.HintSize="350.4,241.6" sap2010:WorkflowViewState.IdRef="ExcelCopyPasteRange_2" SheetName="Imp.pend.y medias cobros" SourceRange="[penultimateCol_old+Convert.ToString(1)+&quot;:&quot;+lastCol_old+Convert.ToString(5)]" />
+              <ui:ExcelReadRange AddHeaders="False" DataTable="[headers]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="350.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_5" PreserveFormat="True" Range="[penultimateCol_old+Convert.ToString(1)+&quot;:&quot;+lastCol_old+Convert.ToString(1)]" SheetName="Imp.pend.y medias cobros" />
+              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="350.4,130.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign.AssignOperations>
+                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[newPendCobro]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[headers.Rows(0).Item(0).ToString.Replace(headers.Rows(0).Item(0).ToString.Split("."c).Last, in_week_number)]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                      <ui:AssignOperation.To>
+                        <OutArgument x:TypeArguments="x:String">[newMed]</OutArgument>
+                      </ui:AssignOperation.To>
+                      <ui:AssignOperation.Value>
+                        <InArgument x:TypeArguments="x:String">[headers.Rows(0).Item(1).ToString.Replace(headers.Rows(0).Item(1).ToString.Split("."c).Last, in_week_number)]</InArgument>
+                      </ui:AssignOperation.Value>
+                    </ui:AssignOperation>
+                  </scg:List>
+                </ui:MultipleAssign.AssignOperations>
+              </ui:MultipleAssign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="350.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Nueva semana Med: &quot;+newMed]" />
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="350.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Nueva semana Pend.Cobro: &quot;+newPendCobro]" />
+              <ui:ExcelWriteCell Cell="[lastCol_new+Convert.ToString(1)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="350.4,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_1" SheetName="Imp.pend.y medias cobros" Text="[newMed]" />
+              <ui:ExcelWriteCell Cell="[penultimateCol_new+Convert.ToString(1)]" DisplayName="Write Cell" sap:VirtualizedContainerService.HintSize="350.4,88" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_2" SheetName="Imp.pend.y medias cobros" Text="[newPendCobro]" />
+              <ui:ExcelCopyPasteRange DestinationCell="[penultimateCol_new+Convert.ToString(7)+&quot;:&quot;+penultimateCol_new+Convert.ToString(8)]" DestinationSheet="Imp.pend.y medias cobros" DisplayName="Copy/Paste Range" sap:VirtualizedContainerService.HintSize="350.4,241.6" sap2010:WorkflowViewState.IdRef="ExcelCopyPasteRange_3" SheetName="Imp.pend.y medias cobros" SourceRange="[penultimateCol_old+Convert.ToString(7)+&quot;:&quot;+penultimateCol_old+Convert.ToString(8)]" />
+              <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_robot_root+&quot;Common\FindReplaceRange.vb&quot;]" DisplayName="Invoke VBA" EntryMethodName="FindReplaceRange" EntryMethodParameters="[{&#xA;&quot;Imp.pend.y medias cobros&quot;,&#xA;penultimateCol_new,&#xA;Convert.ToString(Convert.ToInt32(in_week_number)-1),&#xA;in_week_number&#xA;}]" sap:VirtualizedContainerService.HintSize="350.4,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_1" />
+              <ui:InvokeVBA OutputValue="{x:Null}" CodeFilePath="[in_robot_root+&quot;Common\FindReplaceRange.vb&quot;]" DisplayName="Invoke VBA" EntryMethodName="FindReplaceRange" EntryMethodParameters="[{&#xA;&quot;Imp.pend.y medias cobros&quot;,&#xA;penultimateCol_new,&#xA;Convert.ToString(Convert.ToInt32(in_week_number)-2),&#xA;Convert.ToString(Convert.ToInt32(in_week_number)-1)&#xA;}]" sap:VirtualizedContainerService.HintSize="350.4,88" sap2010:WorkflowViewState.IdRef="InvokeVBA_3" />
+              <ui:ExcelDeleteRange DisplayName="Delete Range" sap:VirtualizedContainerService.HintSize="350.4,134.4" sap2010:WorkflowViewState.IdRef="ExcelDeleteRange_2" Range="[penultimateCol_new+Convert.ToString(2)+&quot;:&quot;+lastCol_new+Convert.ToString(4)]" SheetName="Imp.pend.y medias cobros" ShiftCells="False" ShiftOption="ShiftUp" />
+            </Sequence>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Trace" Message="[&quot;Copiando datos de prevision...&quot;]" />
+            <Sequence DisplayName="Copiar datos de prevision" sap:VirtualizedContainerService.HintSize="333.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="penultimateCol" />
+                <Variable x:TypeArguments="sd:DataTable" Name="nuevasPredicciones_dt" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ExcelReadRange DataTable="{x:Null}" AddHeaders="True" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="350.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_6" SheetName="Imp.pend.y medias cobros">
+                <ui:ExcelReadRange.Range>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </ui:ExcelReadRange.Range>
+              </ui:ExcelReadRange>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[lastCol]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="350.4,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-2]</InArgument>
+                  <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[penultimateCol]</OutArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+              <ui:ExcelReadRange AddHeaders="True" DataTable="[nuevasPredicciones_dt]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="350.4,60" sap2010:WorkflowViewState.IdRef="ExcelReadRange_7" Range="[penultimateCol+Convert.ToString(2)+&quot;:&quot;+penultimateCol+Convert.ToString(4)]" SheetName="Imp.pend.y medias cobros" />
+              <ui:ExcelWriteRange AddHeaders="False" DataTable="[nuevasPredicciones_dt]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="350.4,88" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Imp.pend.y medias cobros" StartingCell="[lastCol+Convert.ToString(2)+&quot;:&quot;+lastCol+Convert.ToString(4)]" />
+              <ui:ExcelDeleteRange DisplayName="Delete Range" sap:VirtualizedContainerService.HintSize="350.4,134.4" sap2010:WorkflowViewState.IdRef="ExcelDeleteRange_3" Range="[penultimateCol+Convert.ToString(2)+&quot;:&quot;+penultimateCol+Convert.ToString(4)]" SheetName="Imp.pend.y medias cobros" ShiftCells="False" ShiftOption="ShiftUp" />
+            </Sequence>
+            <ui:ExcelSaveWorkbook DisplayName="Save Workbook" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="ExcelSaveWorkbook_1" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Escondiendo columnas antiguas y ajustando columnas...&quot;]" />
+    <Sequence DisplayName="Esconder columnas antiguas y autofit" sap:VirtualizedContainerService.HintSize="433.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="first_col" />
+        <Variable x:TypeArguments="x:String" Name="second_col" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="441.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_16" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-9]</InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[first_col]</OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Get_LastRow_LastColumn workflow" sap:VirtualizedContainerService.HintSize="441.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="[in_robot_root+&quot;Common\Get_LastColumn.xaml&quot;]">
+        <ui:InvokeWorkflowFile.Arguments>
+          <InArgument x:TypeArguments="x:Int32" x:Key="lastCol">[datos_dt.Columns.Count-8]</InArgument>
+          <OutArgument x:TypeArguments="x:String" x:Key="lastColStr">[second_col]</OutArgument>
+        </ui:InvokeWorkflowFile.Arguments>
+      </ui:InvokeWorkflowFile>
+      <bes:AutoFitColumns ColumnWidth="{x:Null}" ExecutionResult="{x:Null}" FilePassword="{x:Null}" ModifyPassword="{x:Null}" AutoFit="True" ColumnsRange="[{first_col+&quot;:&quot;+lastCol}]" Delay="3" DisplayName="AutoFit Columns" FilePath="[in_path]" sap:VirtualizedContainerService.HintSize="441.6,69.6" sap2010:WorkflowViewState.IdRef="AutoFitColumns_1" SheetName="Imp.pend.y medias cobros" />
+      <beh:ColumnHide ExecutionResult="{x:Null}" FilePassword="{x:Null}" ModifyPassword="{x:Null}" ColumnNames="[{first_col, second_col}]" Delay="3" DisplayName="Column" FilePath="[in_path]" HiddenType="Hide" sap:VirtualizedContainerService.HintSize="441.6,69.6" sap2010:WorkflowViewState.IdRef="ColumnHide_1" SheetName="Imp.pend.y medias cobros" />
+    </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="433.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Fin el proceso de tratamiento de plantilla: &quot;+in_path]" />
+  </Sequence>
+</Activity>
