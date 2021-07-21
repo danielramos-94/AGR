@@ -1,0 +1,3 @@
+Public Function LastSheetName()
+	LastSheetName = Sheets(Sheets.Count).Name
+End Function
